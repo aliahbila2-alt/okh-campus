@@ -1,4 +1,14 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* Activities gallery: hover zoom on desktop, tap-to-toggle zoom on touch */
+.actcard{overflow:hidden;position:relative;isolation:isolate}
+.actcard img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s;will-change:transform;cursor:zoom-in;transform-origin:center}
+@media (hover:hover) and (pointer:fine){.actcard:hover img{transform:scale(1.12);filter:saturate(1.08)}}
+.actcard.is-zoomed{z-index:5;overflow:visible}.actcard.is-zoomed img{position:relative;z-index:2;transform:scale(1.12);filter:saturate(1.08);border-radius:inherit;box-shadow:0 18px 48px rgba(0,0,0,.28)}
+#myTable{min-width:1100px}#myTable input{max-width:100%;padding:7px 5px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.official-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.official-links a{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:var(--teal2);font-size:12px;font-weight:700;text-decoration:none;background:var(--card)}
+.official-links a:hover{border-color:var(--teal2);transform:translateY(-1px)}
+</style></head><body>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -251,7 +261,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
       </div>
       <div class="tblwrap">
         <table id="subjTable"><thead><tr>
-          <th data-i18n="thMatiere">Matière</th><th data-i18n="thNote">Note /20</th><th data-i18n="thCoef">Coefficient</th><th data-i18n="thPts">Points</th>
+          <th data-i18n="thMatiere">Matière</th><th>Note /20</th>
         </tr></thead><tbody id="subjBody"></tbody></table>
       </div>
       <div class="notice" data-i18n="coefNotice">Important : les coefficients affichés sont provisoires (« À vérifier ») et n'ont pas encore été confirmés auprès d'une source officielle. Vérifiez toujours les informations officielles pour votre année scolaire avant toute décision d'orientation.</div>
@@ -289,10 +299,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
       </div>
       <div class="tblwrap">
         <table id="myTable"><thead><tr>
-          <th data-i18n="thMatiere">Matière</th><th data-i18n="thNote">Note /20</th><th data-i18n="thCoef">Coefficient</th><th data-i18n="thPts">Points</th>
+          <th data-i18n="thMatiere">Matière</th><th data-i18n="thCoef">Coefficient</th><th>Examen 1 /20</th><th>Examen 2 /20</th><th>Examen 3 /20</th><th>Examen 4 /20</th><th>Deuxième note /20</th>
         </tr></thead><tbody id="myBody"></tbody></table>
       </div>
-      <div class="notice" data-i18n="myNotice">Coefficients scolaires (contrôle continu), distincts des coefficients de l'examen national du Bac. Source : référentiel de coefficients publié (Massar). Merci de les vérifier auprès de l'établissement — une matière marquée « À vérifier » n'a pas de coefficient confirmé et n'est pas comptée dans la moyenne.</div>
       <button class="btn btn-primary" id="myCalcBtn" style="margin-top:20px" data-i18n="myCalcBtn">Calculer ma moyenne</button>
       <div class="resultbox hide" id="myResultBox">
         <div style="font-size:14px;opacity:.85" data-i18n="myResultLabel">Votre moyenne pondérée</div>
@@ -379,7 +388,7 @@ thMatiere:"Matière",thNote:"Note /20",thCoef:"Coefficient",thPts:"Points",
 coefNotice:"Coefficients de l'examen national — année scolaire 2026/2027. Les coefficients et modalités d'évaluation peuvent être modifiés : vérifiez toujours les informations officielles pour votre année scolaire avant toute décision d'orientation.",
 myTitle:"Calculateur de moyenne scolaire",mySub:"Du Tronc Commun à la 2ème année Bac — calculez votre moyenne pondérée, matière par matière.",
 myLevelLabel:"Niveau",myBranchLabel:"Filière",
-myNotice:"Coefficients scolaires (contrôle continu), distincts des coefficients de l'examen national du Bac. Source : référentiel de coefficients publié (Massar). Merci de les vérifier auprès de l'établissement — une matière marquée « À vérifier » n'a pas de coefficient confirmé et n'est pas comptée dans la moyenne.",
+myNotice:"La Deuxième note compte pour 25 % de la note finale de chaque matière ; les 4 examens se partagent les 75 % restants (18,75 % chacun). Confirmez les coefficients scolaires auprès de l’établissement.",
 myCalcBtn:"Calculer ma moyenne",myResultLabel:"Votre moyenne pondérée",
 levelTC:"Tronc Commun",levelB1:"1ère année Bac",levelB2:"2ème année Bac",
 toVerify:"À vérifier",
@@ -718,7 +727,7 @@ const SCHOOL_COEF = {
         {n:{fr:"Comptabilité et mathématiques financières",ar:"المحاسبة والرياضيات المالية"},c:6},
         {n:{fr:"Économie générale et statistique",ar:"الاقتصاد العام والإحصاء"},c:3},
         {n:{fr:"Économie et organisation administrative des entreprises",ar:"اقتصاد وتنظيم إداري للمقاولات"},c:6},
-        {n:{fr:"Informatique de gestion",ar:"معلوميات التدبير"},c:null}
+        {n:{fr:"Informatique de gestion",ar:"معلوميات التدبير"},c:1}
       ]}
   ]
 };
@@ -807,6 +816,9 @@ function openDetail(id){
     <div class="pillrow">${b.careers[lang].map(s=>`<span class="pill">${s}</span>`).join('')}</div>
     <div class="quote" style="margin-top:18px">${T[lang].profileLabel} — ${b.profile[lang]}</div>
     <div class="notice"><strong>${T[lang].warnLabel} — </strong>${T[lang].warnText}</div>
+    <div style="margin-top:18px;font-weight:700;font-size:14px">${lang==='ar'?'مصادر ومعلومات رسمية':'Sources et informations officielles'}</div>
+    <p style="margin-top:6px">${lang==='ar'?'للتأكد من البرامج وشروط الولوج، راجعوا المواقع الرسمية؛ تختلف المسارات وشروط القبول حسب السنة والمؤسسة.':'Pour vérifier les programmes, passerelles et conditions d’accès, consultez les portails institutionnels. Les admissions dépendent de l’année, de la formation et des conditions propres à chaque établissement.'}</p>
+    <div class="official-links"><a href="https://www.men.gov.ma/" target="_blank" rel="noopener">${lang==='ar'?'وزارة التربية الوطنية':'Ministère de l’Éducation'}</a><a href="https://www.dfc.gov.ma/" target="_blank" rel="noopener">${lang==='ar'?'الأقسام التحضيرية':'CPGE — portail officiel'}</a><a href="https://www.ofppt.ma/" target="_blank" rel="noopener">OFPPT</a><a href="https://www.enssup.gov.ma/" target="_blank" rel="noopener">${lang==='ar'?'التعليم العالي':'Enseignement supérieur'}</a></div>
     ${isB2 ? `<a class="btn btn-primary" style="margin-top:18px" href="#calculateur" onclick="document.getElementById('branchSelect').value='${b.id}';renderTable();">${T[lang].ctaCalc}</a>` : ''}
   `;
   panel.classList.add('open');
@@ -833,9 +845,7 @@ function renderTable(){
   b.subjects.forEach((s,i)=>{
     const tr = document.createElement('tr');
     tr.innerHTML = `<td>${s.n[lang]}</td>
-      <td><input type="number" min="0" max="20" step="0.01" class="subjNote" data-i="${i}" style="width:80px" placeholder="0.00"></td>
-      <td>${s.c}</td>
-      <td class="ptsCell" data-i="${i}">0.00</td>`;
+      <td><input aria-label="${s.n[lang]} — Note sur 20" type="number" min="0" max="20" step="0.01" class="subjNote" data-i="${i}" style="width:100px" placeholder="0.00"></td>`;
     body.appendChild(tr);
   });
   document.getElementById('resultBox').classList.add('hide');
@@ -866,13 +876,16 @@ function renderMyTable(){
   const body = document.getElementById('myBody'); body.innerHTML='';
   b.subjects.forEach((s,i)=>{
     const tr = document.createElement('tr');
-    const coefDisplay = (s.c===null) ? T[lang].toVerify : s.c;
-    tr.innerHTML = `<td>${s.n[lang]}</td>
-      <td><input type="number" min="0" max="20" step="0.01" class="mySubjNote" data-i="${i}" style="width:80px" placeholder="0.00"></td>
-      <td>${coefDisplay}</td>
-      <td class="myPtsCell" data-i="${i}">—</td>`;
+    const subjectName = `${s.n.fr || ''} ${s.n.ar || ''}`.toLowerCase();
+    const noSecondNote = subjectName.includes('math') || subjectName.includes('رياضيات') || subjectName.includes('éducation physique') || subjectName.includes('التربية البدنية');
+    const inputCount = noSecondNote ? 4 : 5;
+    const inputs = Array.from({length:inputCount},(_,j) => `<td><input aria-label="${s.n[lang]} — ${j===4?'Deuxième note':'Examen '+(j+1)} sur 20" type="number" min="0" max="20" step="0.01" class="myExamNote" data-i="${i}" data-exam="${j}" style="width:100px" placeholder="—"></td>`).join('');
+    tr.innerHTML = `<td>${s.n[lang]}</td><td class="coef-cell">${s.c ?? '—'}</td>${inputs}`;
     body.appendChild(tr);
   });
+  const conductRow=document.createElement('tr');
+  conductRow.innerHTML = `<td>${lang==='ar'?'المواظبة والسلوك':"Assiduité et Conduite"}</td><td class="coef-cell">1</td><td colspan="4"><input aria-label="${lang==='ar'?'المواظبة والسلوك':"Assiduité et Conduite"} — Note sur 20" type="number" min="0" max="20" step="0.01" id="assiduiteNote" style="width:100px" placeholder="—"></td>`;
+  body.appendChild(conductRow);
   document.getElementById('myResultBox').classList.add('hide');
   document.getElementById('mySubjBars').innerHTML='';
 }
@@ -880,42 +893,82 @@ document.getElementById('levelSelect').addEventListener('change', buildLevelSele
 document.getElementById('myBranchSelect').addEventListener('change', renderMyTable);
 
 function calcMoyenne(){
-  const level = document.getElementById('levelSelect').value;
-  const list = SCHOOL_COEF[level];
-  const b = list.find(x=>x.id===document.getElementById('myBranchSelect').value) || list[0];
-  const inputs = [...document.querySelectorAll('.mySubjNote')];
-  let totalPts=0, totalCoef=0, ok=true; const subjVals=[];
-  inputs.forEach((inp,i)=>{
-    const v = inp.value;
-    const s = b.subjects[i];
-    const ptsCell = document.querySelector(`.myPtsCell[data-i="${i}"]`);
-    if(s.c===null){
-      ptsCell.textContent = '—';
-      if(v!=='' && !validRange(v)) ok=false;
-      return;
+  const level=document.getElementById('levelSelect').value;
+  const list=SCHOOL_COEF[level];
+  const b=list.find(x=>x.id===document.getElementById('myBranchSelect').value)||list[0];
+  let totalPts=0,totalCoef=0,ok=true,used=0;const subjVals=[];
+  b.subjects.forEach((s,i)=>{
+    const inputs=[0,1,2,3,4].map(j=>document.querySelector(`.myExamNote[data-i="${i}"][data-exam="${j}"]`));
+    const subjectName = `${s.n.fr || ''} ${s.n.ar || ''}`.toLowerCase();
+    const noSecondNote = subjectName.includes('math') || subjectName.includes('رياضيات') || subjectName.includes('éducation physique') || subjectName.includes('التربية البدنية');
+    const values=inputs.map((input,j)=>input && (j!==4 || !noSecondNote) ? input.value : '');
+    if(values.every(v=>v==='')) return;
+    if(values.some(v=>v!=='' && !validRange(v))) { ok=false; return; }
+    if(s.c===null || !Number.isFinite(Number(s.c)) || Number(s.c)<=0) return;
+    const exams=values.slice(0,4).filter(v=>v!=='').map(Number);
+    const examAverage=exams.length ? exams.reduce((a,v)=>a+v,0)/exams.length : null;
+    let note;
+    if(noSecondNote) {
+      if(examAverage===null) return;
+      note=examAverage;
+    } else {
+      const second=values[4]==='' ? null : Number(values[4]);
+      if(examAverage===null && second===null) return;
+      const weight=(examAverage===null ? 0 : 0.75)+(second===null ? 0 : 0.25);
+      note=((examAverage===null ? 0 : examAverage*0.75)+(second===null ? 0 : second*0.25))/weight;
     }
-    if(v===''){ ptsCell.textContent='—'; return; }
-    if(!validRange(v)){ ok=false; ptsCell.textContent='—'; return; }
-    const note = parseFloat(v);
-    const pts = note*s.c;
-    ptsCell.textContent = pts.toFixed(2);
-    totalPts += pts; totalCoef += s.c;
-    subjVals.push({name:s.n[lang], note});
+    totalPts+=note*Number(s.c);totalCoef+=Number(s.c);used++;
+    subjVals.push({name:s.n[lang],note});
   });
-  if(!ok || totalCoef===0) return;
-  const moyenne = totalPts/totalCoef;
-  document.getElementById('myResultBox').classList.remove('hide');
-  document.getElementById('myBigResult').textContent = moyenne.toFixed(2) + ' /20';
-  document.getElementById('myBarFill').style.width = Math.min(100,(moyenne/20*100)) + '%';
-  const barsEl = document.getElementById('mySubjBars'); barsEl.innerHTML='';
-  subjVals.forEach(s=>{
-    const row = document.createElement('div'); row.className='sbrow';
-    row.innerHTML = `<span>${s.name}</span><div class="sbtrack"><div class="sbfill" style="width:${s.note/20*100}%"></div></div><span>${s.note.toFixed(1)}</span>`;
-    barsEl.appendChild(row);
-  });
+  if(!ok||totalCoef===0){
+    document.getElementById('myResultBox').classList.add('hide');
+    if(!ok) alert(lang==='ar'?'أكمل النقاط الخمس لكل مادة بدأت بإدخالها، وأدخل قيماً بين 0 و20.':'Pour chaque matière commencée, remplissez les 4 examens et la Deuxième note avec des notes entre 0 et 20. Les matières laissées entièrement vides sont ignorées.');
+    else alert(lang==='ar'?'أدخل النقاط الخمس لمادة واحدة على الأقل.':'Saisissez les 4 examens et la Deuxième note d’au moins une matière.');
+    return;
+  }
+  const moyenne=totalPts/totalCoef;document.getElementById('myResultBox').classList.remove('hide');
+  document.getElementById('myBigResult').textContent=moyenne.toFixed(2)+' /20';document.getElementById('myBarFill').style.width=Math.min(100,moyenne/20*100)+'%';
+  const barsEl=document.getElementById('mySubjBars');barsEl.innerHTML='';subjVals.forEach(s=>{const row=document.createElement('div');row.className='sbrow';row.innerHTML=`<span>${s.name}</span><div class="sbtrack"><div class="sbfill" style="width:${s.note/20*100}%"></div></div><span>${s.note.toFixed(2)}</span>`;barsEl.appendChild(row);});
 }
 document.getElementById('myCalcBtn').addEventListener('click', calcMoyenne);
 
+
+
+function calcMoyenne(){
+  const level=document.getElementById('levelSelect').value;
+  const list=SCHOOL_COEF[level];
+  const b=list.find(x=>x.id===document.getElementById('myBranchSelect').value)||list[0];
+  let totalPts=0,totalCoef=0,ok=true;const subjVals=[];
+  b.subjects.forEach((s,i)=>{
+    const inputs=[0,1,2,3,4].map(j=>document.querySelector(`.myExamNote[data-i="${i}"][data-exam="${j}"]`));
+    const examValues=inputs.slice(0,4).map(input=>input?input.value:'').filter(v=>v!=='');
+    const secondValue=inputs[4]?inputs[4].value:'';
+    const entries=[...examValues,...(secondValue!==''?[secondValue]:[])];
+    if(entries.length===0) return; // Ignore subjects with no notes.
+    if(entries.some(v=>!validRange(v))){ok=false;return;}
+    if(s.c===null || !Number.isFinite(Number(s.c)) || Number(s.c)<=0) return;
+    // Average only the exam notes entered, then apply 75%; add the Deuxième note at 25% when provided.
+    const examAverage=examValues.length ? examValues.reduce((sum,v)=>sum+Number(v),0)/examValues.length : 0;
+    const note=examAverage*0.75+(secondValue!==''?Number(secondValue)*0.25:0);
+    totalPts+=note*Number(s.c);totalCoef+=Number(s.c);subjVals.push({name:s.n[lang],note});
+  });
+  const assiduiteInput=document.getElementById('assiduiteNote');
+  const assiduiteValue=assiduiteInput ? assiduiteInput.value : '';
+  if(assiduiteValue!==''){
+    if(!validRange(assiduiteValue)) ok=false;
+    else { totalPts+=Number(assiduiteValue); totalCoef+=1; subjVals.push({name:lang==='ar'?'المواظبة والسلوك':"Assiduité et Conduite",note:Number(assiduiteValue)}); }
+  }
+  if(!ok||totalCoef===0){
+    document.getElementById('myResultBox').classList.add('hide');
+    if(!ok) alert(lang==='ar'?'أدخل نقطاً بين 0 و20 في الخانات التي استعملتها.':'Les notes saisies doivent être comprises entre 0 et 20. Les matières laissées vides sont ignorées.');
+    else alert(lang==='ar'?'أدخل نقطة واحدة على الأقل.':'Saisissez au moins une note pour calculer la moyenne.');
+    return;
+  }
+  const moyenne=totalPts/totalCoef;document.getElementById('myResultBox').classList.remove('hide');
+  document.getElementById('myBigResult').textContent=moyenne.toFixed(2)+' /20';document.getElementById('myBarFill').style.width=Math.min(100,moyenne/20*100)+'%';
+  const barsEl=document.getElementById('mySubjBars');barsEl.innerHTML='';subjVals.forEach(s=>{const row=document.createElement('div');row.className='sbrow';row.innerHTML=`<span>${s.name}</span><div class="sbtrack"><div class="sbfill" style="width:${s.note/20*100}%"></div></div><span>${s.note.toFixed(2)}</span>`;barsEl.appendChild(row);});
+}
+document.getElementById('myCalcBtn').addEventListener('click', calcMoyenne);
 
 function validRange(v){ return v!=='' && !isNaN(v) && v>=0 && v<=20; }
 function calc(){
@@ -935,7 +988,6 @@ function calc(){
     const note = valid ? parseFloat(v) : 0;
     const coef = b.subjects[i].c;
     const pts = note*coef;
-    document.querySelector(`.ptsCell[data-i="${i}"]`).textContent = pts.toFixed(2);
     totalPts += pts; totalCoef += coef;
     subjVals.push({name:b.subjects[i].n[lang], note});
   });
@@ -968,7 +1020,9 @@ document.getElementById("act3").src = ACT3_URI;
 document.getElementById("act4").src = ACT4_URI;
 document.getElementById("act5").src = ACT5_URI;
 
-applyTheme(); applyLang();
+applyTheme(); // Touch devices: tap an activity image to toggle zoom; tapping outside closes it.
+(function enableActivityImageZoom(){const cards=[...document.querySelectorAll('.actcard')];cards.forEach(card=>{const img=card.querySelector('img');if(!img)return;img.addEventListener('click',e=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches)return;e.preventDefault();const was=card.classList.contains('is-zoomed');cards.forEach(c=>c.classList.remove('is-zoomed'));if(!was)card.classList.add('is-zoomed');});});document.addEventListener('click',e=>{if(!e.target.closest('.actcard'))cards.forEach(c=>c.classList.remove('is-zoomed'));});})();
+applyLang();
 </script>
 </body>
 </html>

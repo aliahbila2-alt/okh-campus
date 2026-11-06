@@ -1,14 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
-/* Activities gallery: hover zoom on desktop, tap-to-toggle zoom on touch */
-.actcard{overflow:hidden;position:relative;isolation:isolate}
-.actcard img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s;will-change:transform;cursor:zoom-in;transform-origin:center}
-@media (hover:hover) and (pointer:fine){.actcard:hover img{transform:scale(1.12);filter:saturate(1.08)}}
-.actcard.is-zoomed{z-index:5;overflow:visible}.actcard.is-zoomed img{position:relative;z-index:2;transform:scale(1.12);filter:saturate(1.08);border-radius:inherit;box-shadow:0 18px 48px rgba(0,0,0,.28)}
-#myTable{min-width:1100px}#myTable input{max-width:100%;padding:7px 5px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
-.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.official-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.official-links a{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:var(--teal2);font-size:12px;font-weight:700;text-decoration:none;background:var(--card)}
-.official-links a:hover{border-color:var(--teal2);transform:translateY(-1px)}
-</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -153,7 +143,108 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
 .footlinks a{text-decoration:none;opacity:.8}
 .footnote{margin-top:20px;font-size:12.5px;color:var(--muted)}
 
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+
+/* Activity image zoom */
+.actcard{overflow:hidden;position:relative;isolation:isolate}
+.actcard img{display:block;width:100%;height:190px;object-fit:cover;transform:scale(1);transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s;will-change:transform;cursor:zoom-in;transform-origin:center}
+@media (hover:hover) and (pointer:fine){.actcard:hover img{transform:scale(1.15);filter:saturate(1.08)}}
+.actcard.is-zoomed img{transform:scale(1.15);filter:saturate(1.08)}
+/* ===== PRO POLISH LAYER ===== */
+:root{--shadow-sm:0 1px 2px rgba(15,40,38,.06),0 2px 8px rgba(15,40,38,.05);--shadow-md:0 2px 4px rgba(15,40,38,.05),0 12px 32px rgba(15,40,38,.10);--shadow-lg:0 4px 8px rgba(15,40,38,.06),0 24px 56px rgba(15,40,38,.16);--ring:0 0 0 3px color-mix(in srgb,var(--teal2) 35%,transparent)}
+:root[data-theme="dark"]{--shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 12px 32px rgba(0,0,0,.45);--shadow-lg:0 24px 56px rgba(0,0,0,.55)}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:10px}
+.btn:focus-visible,.langbtn:focus-visible,.themebtn:focus-visible{box-shadow:var(--ring)}
+nav{box-shadow:0 1px 0 var(--line),0 8px 24px rgba(15,40,38,.04)}
+.navlinks a{position:relative;padding:6px 0;opacity:.8}
+.navlinks a::after{content:'';position:absolute;inset-inline:0;bottom:0;height:2px;border-radius:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+html[dir="rtl"] .navlinks a::after{transform-origin:right}
+.navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1)}
+.navlinks a.active{opacity:1;color:var(--teal2)}
+.btn{box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{box-shadow:var(--shadow-md)}
+.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal2))}
+section{padding:84px 0}
+section:nth-of-type(even):not(.hero){background:linear-gradient(180deg,color-mix(in srgb,var(--card) 55%,transparent),transparent)}
+.sectitle{letter-spacing:-.01em}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.kicker::before{content:'';width:22px;height:2px;background:var(--gold);border-radius:2px}
+html[dir="rtl"] .kicker{letter-spacing:0}
+.chip,.pcard,.panel,.calcbox,.actcard,.campusfig{box-shadow:var(--shadow-sm)}
+.chip{transition:transform .25s,box-shadow .25s,border-color .25s}
+.chip:hover,.pcard:hover{box-shadow:var(--shadow-md)}
+.pcard{transition:transform .2s,box-shadow .2s,border-color .2s}
+.pcard:hover{transform:translateY(-2px)}
+.panel{box-shadow:var(--shadow-md)}
+select,input{transition:border-color .2s,box-shadow .2s}
+select:hover,input:hover{border-color:color-mix(in srgb,var(--teal2) 50%,var(--line))}
+select:focus,input:focus{outline:none;border-color:var(--teal2);box-shadow:var(--ring)}
+.resultbox{box-shadow:var(--shadow-lg)}
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.totop{position:fixed;inset-inline-end:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow-md);cursor:pointer;font-size:18px;color:var(--ink);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:40}
+.totop.show{opacity:1;pointer-events:auto}.totop:hover{transform:translateY(-3px)}
+
+/* ===== PATHWAY GRAPH ===== */
+.graphsec{background:#0d1f1d!important;color:#eaf1ee;position:relative;overflow:hidden;isolation:isolate}
+.graphsec::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 8% 10%,rgba(62,168,162,.28),transparent 45%),radial-gradient(ellipse at 95% 90%,rgba(184,147,74,.22),transparent 45%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px}
+.graphsec p{color:rgba(234,241,238,.72)}
+.graphsec .sectitle{color:#fff}
+.gwrap{position:relative;margin-top:10px}
+.gcols{display:grid;grid-template-columns:.8fr 1.15fr 1.15fr 1.15fr;gap:clamp(28px,6vw,92px);position:relative;z-index:1;align-items:center}
+.gcol{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.gcolhead{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:6px}
+html[dir="rtl"] .gcolhead{letter-spacing:0;font-size:13.5px}
+.gnode{position:relative;padding:11px 14px;border-radius:12px;font-size:13.5px;font-weight:600;line-height:1.3;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#eaf1ee;text-align:start;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;font-family:inherit;width:100%;display:block}
+.gnode small{display:block;font-weight:500;opacity:.65;font-size:11.5px;margin-top:2px}
+.gnode.here{background:linear-gradient(135deg,rgba(30,127,122,.55),rgba(30,127,122,.25));border-color:rgba(120,220,210,.6);cursor:pointer;box-shadow:0 0 0 1px rgba(120,220,210,.15),0 8px 26px rgba(30,127,122,.35)}
+.gnode.here::after{content:'★';position:absolute;top:-8px;inset-inline-end:-6px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#1a1405;font-size:11px;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.gnode.here:hover{transform:translateY(-2px) scale(1.02);border-color:#9ff0e6}
+.gnode.start{background:linear-gradient(135deg,var(--gold),#d6b46e);color:#1a1405;border:none;text-align:center;font-size:15px;padding:18px 14px;box-shadow:0 10px 30px rgba(184,147,74,.35)}
+.gnode.dim{opacity:.55}
+.gnode.hl{background:rgba(184,147,74,.25);border-color:var(--gold);opacity:1}
+.gnode.dimmed{opacity:.28}
+.gsvg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
+.gsvg path{fill:none;stroke:rgba(150,215,208,.38);stroke-width:1.6}
+.gsvg path.on{stroke:var(--gold);stroke-width:2.4;filter:drop-shadow(0 0 4px rgba(184,147,74,.7))}
+.gsvg path.flow{stroke-dasharray:6 8;animation:gflow 1.6s linear infinite}
+@keyframes gflow{to{stroke-dashoffset:-28}}
+.glegend{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;font-size:13px;color:rgba(234,241,238,.8);align-items:center}
+.glegend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-inline-end:7px;vertical-align:-1px}
+.gsource{margin-top:14px;font-size:12.5px;color:rgba(234,241,238,.6)}
+.gsource a{color:#9ff0e6}
+@media(max-width:860px){
+  .gsvg{display:none}
+  .gcols{grid-template-columns:1fr;gap:26px}
+  .gcol{align-items:stretch}
+  .gcol + .gcol::before{content:'↓';text-align:center;color:var(--gold);font-size:22px;margin:-8px 0 -2px}
+  .gnode.start{max-width:320px;margin:0 auto}
+}
+
+/* ===== RIASEC ===== */
+.riasec-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;margin-bottom:34px}
+@media(max-width:820px){.riasec-hero{grid-template-columns:1fr}}
+.riagrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.riagrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.riagrid{grid-template-columns:1fr}}
+.riacard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .25s,box-shadow .25s}
+.riacard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.riacard::before{content:'';position:absolute;inset-inline-start:0;top:0;bottom:0;width:4px;background:var(--c)}
+.riaL{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1;color:var(--c)}
+.riacard h3{font-size:17px;margin:8px 0 6px}
+.riacard p{margin:0;font-size:13.5px}
+.riacard .pillrow{margin-top:10px}
+.riabox{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.riabox::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;inset-inline-end:-70px;top:-70px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%)}
+.riabox h3{color:#fff;font-size:22px;margin-bottom:8px}
+.riabox p{color:rgba(255,255,255,.88);margin:0 0 18px}
+.riabox .btn{background:#fff;color:var(--teal);font-weight:700}
+.riabox small{display:block;margin-top:14px;opacity:.8;font-size:12.5px;line-height:1.5}
+.riahex{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.riahex span{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--card);color:var(--teal2);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
 [data-i18n]{transition:opacity .25s}
 </style>
 </head>
@@ -165,7 +256,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
     <div class="navlinks">
       <a href="#accueil" data-i18n="nav1">Accueil</a>
       <a href="#filieres" data-i18n="nav2">Filières</a>
+      <a href="#graphe" data-i18n="navGraph">Parcours</a>
       <a href="#orientation" data-i18n="nav3">Orientation</a>
+      <a href="#riasec" data-i18n="navRia">Test RIASEC</a>
       <a href="#calculateur" data-i18n="nav4">Calculateur</a>
       <a href="#activites" data-i18n="nav7">Activités</a>
       <a href="#apropos" data-i18n="nav6">À propos</a>
@@ -179,8 +272,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
   <div id="mobilemenu">
     <a href="#accueil" data-i18n="nav1">Accueil</a>
     <a href="#filieres" data-i18n="nav2">Filières</a>
-    <a href="#orientation" data-i18n="nav3">Orientation</a>
-    <a href="#calculateur" data-i18n="nav4">Calculateur</a>
+    <a href="#graphe" data-i18n="navGraph">Parcours</a>
+      <a href="#orientation" data-i18n="nav3">Orientation</a>
+    <a href="#riasec" data-i18n="navRia">Test RIASEC</a>
+      <a href="#calculateur" data-i18n="nav4">Calculateur</a>
     <a href="#activites" data-i18n="nav7">Activités</a>
     <a href="#apropos" data-i18n="nav6">À propos</a>
   </div>
@@ -195,6 +290,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
     <div class="ctaRow">
       <a class="btn btn-primary" href="#filieres" data-i18n="ctaFilieres">Explorer les filières</a>
       <a class="btn btn-ghost" href="#calculateur" data-i18n="ctaCalc">Calculer ma moyenne</a>
+      <a class="btn btn-ghost" href="#activites" data-i18n="ctaAct">Activités</a>
     </div>
   </div>
 </section>
@@ -229,12 +325,46 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
   </div>
 </section>
 
+<section class="graphsec" id="graphe">
+  <div class="wrap">
+    <div class="kicker" data-i18n="gKick">Système éducatif</div>
+    <h2 class="sectitle" data-i18n="gTitle">De la 3AC au 2BAC : les parcours au Maroc</h2>
+    <p class="secdesc" data-i18n="gDesc">Survolez ou touchez une filière pour illuminer tous les chemins possibles qui y mènent et qui en partent. Les filières ★ sont celles du lycée : cliquez pour ouvrir leur fiche.</p>
+    <div class="gwrap" id="gwrap">
+      <svg class="gsvg" id="gsvg" aria-hidden="true"></svg>
+      <div class="gcols" id="gcols"></div>
+    </div>
+    <div class="glegend"><span><i style="background:linear-gradient(135deg,rgba(30,127,122,.9),rgba(30,127,122,.4))"></i><span data-i18n="gLeg1">★ Disponible au lycée Omar Al Khayyam</span></span><span><i style="background:rgba(255,255,255,.2)"></i><span data-i18n="gLeg2">Parcours national (non proposé ici)</span></span><span><i style="background:var(--gold)"></i><span data-i18n="gLeg3">Chemin sélectionné</span></span></div>
+    <div class="gsource" data-i18n="gSrc">Schéma indicatif, d'après le guide d'orientation Tawjihnet 2026 (structure des filières et passerelles). Vérifiez toujours auprès de l'administration et du portail Massar.</div>
+  </div>
+</section>
+
 <section id="orientation">
   <div class="wrap">
     <h2 class="sectitle" data-i18n="orientTitle">Orientation — Que faire après le Bac ?</h2>
     <p class="secdesc" data-i18n="orientDesc">Les pistes présentées ci-dessous sont indicatives et organisées par filière de 2ème année Bac.</p>
     <div id="orientGrid" class="chipgrid" style="grid-template-columns:repeat(3,1fr)"></div>
     <div class="notice" data-i18n="orientNotice">L'accès dépend des conditions d'admission, des concours, des seuils, des places disponibles et des règles en vigueur pour l'année concernée. Les parcours présentés sont indicatifs — consultez les sources officielles des établissements concernés.</div>
+  </div>
+</section>
+
+<section id="riasec">
+  <div class="wrap">
+    <div class="riasec-hero">
+      <div>
+        <div class="kicker" data-i18n="rKick">Se connaître pour mieux s'orienter</div>
+        <h2 class="sectitle" data-i18n="rTitle">Test d'orientation RIASEC</h2>
+        <p data-i18n="rDesc">Le modèle RIASEC (ou « Holland ») classe les intérêts professionnels en six grands types. Recommandé par notre enseignant, ce test gratuit pour élèves aide à repérer les domaines qui te ressemblent avant de choisir une filière.</p>
+        <div class="riahex"><span>R</span><span>I</span><span>A</span><span>S</span><span>E</span><span>C</span></div>
+      </div>
+      <div class="riabox">
+        <h3 data-i18n="rBoxT">Passer le test (environ 10 min)</h3>
+        <p data-i18n="rBoxP">Réponds spontanément, il n'y a pas de bonne ou de mauvaise réponse. Tu obtiens ton profil à trois lettres.</p>
+        <a class="btn" href="https://riasectest.com/fr/tests/riasec-test-for-students" target="_blank" rel="noopener" data-i18n="rBtn">Commencer le test →</a>
+        <small data-i18n="rNote">Site externe (riasectest.com), non affilié au lycée. Le résultat est une piste de réflexion, pas une décision : parle-en avec ton conseiller d'orientation.</small>
+      </div>
+    </div>
+    <div class="riagrid" id="riaGrid"></div>
   </div>
 </section>
 
@@ -356,8 +486,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
       <div class="footlinks">
         <a href="#accueil" data-i18n="nav1">Accueil</a>
         <a href="#filieres" data-i18n="nav2">Filières</a>
-        <a href="#orientation" data-i18n="nav3">Orientation</a>
-        <a href="#calculateur" data-i18n="nav4">Calculateur</a>
+        <a href="#graphe" data-i18n="navGraph">Parcours</a>
+      <a href="#orientation" data-i18n="nav3">Orientation</a>
+        <a href="#riasec" data-i18n="navRia">Test RIASEC</a>
+      <a href="#calculateur" data-i18n="nav4">Calculateur</a>
         <a href="#activites" data-i18n="nav7">Activités</a>
         <a href="#apropos" data-i18n="nav6">À propos</a>
       </div>
@@ -372,7 +504,7 @@ const T = {
 fr:{brand:"OKH Campus",nav1:"Accueil",nav2:"Filières",nav3:"Orientation",nav4:"Calculateur",nav6:"À propos",
 heroEyebrow:"Lycée public — Maroc",heroTitle:"Lycée Omar Al Khayyam",heroSub:"Explorez votre parcours. Préparez votre avenir.",
 heroDesc:"Un espace numérique dédié à la découverte des filières de l'établissement, à la compréhension des possibilités d'orientation et à la préparation du Baccalauréat.",
-ctaFilieres:"Explorer les filières",ctaCalc:"Calculer ma moyenne",
+ctaFilieres:"Explorer les filières",ctaCalc:"Calculer ma moyenne",ctaAct:"Activités",
 parcoursTitle:"Nos parcours",parcoursDesc:"Un aperçu rapide des filières proposées, du tronc commun à la deuxième année du Baccalauréat.",
 highlightTitle:"Une offre de formation diversifiée",
 highlightDesc:"Le Lycée Omar Al Khayyam propose plusieurs parcours académiques permettant aux élèves de construire progressivement leur orientation, du tronc commun jusqu'à la deuxième année du Baccalauréat.",
@@ -395,7 +527,9 @@ toVerify:"À vérifier",
 calcBtn:"Calculer ma moyenne",resultLabel:"Votre moyenne estimée",
 legCC:"Contrôle continu 25%",legReg:"Régional 25%",legNat:"National 50%",
 campusTitle:"Notre campus",campusDesc:"Un aperçu du plan de l'établissement — bâtiments, cour et terrain de sport.",campusCap:"Plan illustratif du campus — à titre indicatif.",
-nav7:"Activités",
+nav7:"Activités",navGraph:"Parcours",navRia:"Test RIASEC",
+gKick:"Système éducatif",gTitle:"De la 3AC au 2BAC : les parcours au Maroc",gDesc:"Survolez ou touchez une filière pour illuminer les chemins qui y mènent et qui en partent. Les filières ★ sont celles du lycée : cliquez pour ouvrir leur fiche.",gLeg1:"★ Disponible au lycée Omar Al Khayyam",gLeg2:"Parcours national (non proposé ici)",gLeg3:"Chemin sélectionné",gSrc:"Schéma indicatif, d'après le guide d'orientation Tawjihnet 2026 (structure des filières et passerelles). Vérifiez toujours auprès de l'administration et du portail Massar.",
+rKick:"Se connaître pour mieux s'orienter",rTitle:"Test d'orientation RIASEC",rDesc:"Le modèle RIASEC (ou « Holland ») classe les intérêts professionnels en six grands types. Recommandé par notre enseignant, ce test gratuit pour élèves aide à repérer les domaines qui te ressemblent avant de choisir une filière.",rBoxT:"Passer le test (environ 10 min)",rBoxP:"Réponds spontanément, il n'y a ni bonne ni mauvaise réponse. Tu obtiens ton profil à trois lettres.",rBtn:"Commencer le test →",rNote:"Site externe (riasectest.com), non affilié au lycée. Le résultat est une piste de réflexion, pas une décision : parle-en avec ton conseiller d'orientation.",
 actTitle:"Nos activités",actDesc:"Quelques moments d'ateliers, de séances d'orientation et de projets technologiques organisés au lycée.",
 act1cap:"Séance d'orientation et de sensibilisation avec les élèves.",
 act2cap:"Atelier d'initiation à la programmation informatique.",
@@ -413,7 +547,7 @@ warnLabel:"Important",warnText:"Les exemples d'études et de métiers ne constit
 ar:{brand:"OKH كامبوس",nav1:"الرئيسية",nav2:"الشعب",nav3:"التوجيه",nav4:"حاسبة المعدل",nav6:"حول الثانوية",
 heroEyebrow:"ثانوية عمومية — المغرب",heroTitle:"ثانوية عمر الخيام",heroSub:"اكتشف مسارك. حضّر لمستقبلك.",
 heroDesc:"فضاء رقمي مخصص لاكتشاف شعب المؤسسة، وفهم إمكانيات التوجيه، والتحضير لامتحان البكالوريا.",
-ctaFilieres:"اكتشف الشعب",ctaCalc:"احسب معدلي",
+ctaFilieres:"اكتشف الشعب",ctaCalc:"احسب معدلي",ctaAct:"الأنشطة",
 parcoursTitle:"مساراتنا",parcoursDesc:"نظرة سريعة على الشعب المقترحة، من الجذع المشترك إلى السنة الثانية بكالوريا.",
 highlightTitle:"عرض تكويني متنوع",
 highlightDesc:"تقترح ثانوية عمر الخيام عدة مسارات دراسية تتيح للتلاميذ بناء توجههم تدريجيًا، من الجذع المشترك إلى السنة الثانية بكالوريا.",
@@ -436,7 +570,9 @@ toVerify:"ينبغي التحقق منها",
 calcBtn:"احسب معدلي",resultLabel:"معدلك التقديري",
 legCC:"المراقبة المستمرة 25%",legReg:"الجهوي 25%",legNat:"الوطني 50%",
 campusTitle:"حرمنا الدراسي",campusDesc:"لمحة عن مخطط المؤسسة — المباني والساحة وملعب الرياضة.",campusCap:"مخطط توضيحي للحرم الدراسي — لأغراض إرشادية.",
-nav7:"الأنشطة",
+nav7:"الأنشطة",navGraph:"المسارات",navRia:"اختبار RIASEC",
+gKick:"المنظومة التربوية",gTitle:"من الثالثة إعدادي إلى الثانية بكالوريا: المسارات بالمغرب",gDesc:"مرّر المؤشر أو المس شعبة لإضاءة المسارات المؤدية إليها والمنبثقة عنها. الشعب ★ هي المتوفرة بالثانوية: اضغط لفتح بطاقتها.",gLeg1:"★ متوفرة بثانوية عمر الخيام",gLeg2:"مسار وطني (غير متوفر هنا)",gLeg3:"المسار المحدد",gSrc:"مخطط استرشادي مستوحى من دليل التوجيه (Tawjihnet 2026) حول هيكلة الشعب والمسالك والجسور. تحقق دائماً لدى الإدارة وبوابة مسار.",
+rKick:"اعرف نفسك لتختار بشكل أفضل",rTitle:"اختبار التوجيه RIASEC",rDesc:"يصنّف نموذج RIASEC (نموذج هولاند) الميول المهنية إلى ستة أنماط كبرى. اقترح علينا أستاذنا هذا الاختبار المجاني الموجّه للتلاميذ لمساعدتك على اكتشاف المجالات التي تناسبك قبل اختيار الشعبة.",rBoxT:"اجتز الاختبار (حوالي 10 دقائق)",rBoxP:"أجب بتلقائية، فلا توجد إجابة صحيحة أو خاطئة. ستحصل على ملفك المكوّن من ثلاثة أحرف.",rBtn:"ابدأ الاختبار ←",rNote:"موقع خارجي (riasectest.com) غير تابع للثانوية. النتيجة مجرد توجيه للتفكير وليست قراراً: ناقشها مع مستشار التوجيه.",
 actTitle:"أنشطتنا",actDesc:"لمحات من الورشات وجلسات التوجيه والمشاريع التكنولوجية التي نُظمت داخل الثانوية.",
 act1cap:"لقاء توجيهي وتحسيسي مع التلاميذ.",
 act2cap:"ورشة للتهيئة في البرمجة المعلوماتية.",
@@ -742,6 +878,128 @@ const MAP_URI = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYF
 let lang = localStorage.getItem('okh_lang') || 'fr';
 let theme = localStorage.getItem('okh_theme') || 'light';
 
+
+/* ===== Pathway graph ===== */
+const G_COLS=[
+ {h:{fr:'Collège',ar:'الإعدادي'},nodes:[{id:'g3',t:{fr:'3ème année collège',ar:'الثالثة إعدادي'},sub:{fr:'3AC',ar:'3AC'},start:1}]},
+ {h:{fr:'Tronc commun',ar:'الجذع المشترك'},nodes:[
+  {id:'tcsc',t:{fr:'TC Sciences (BIOF)',ar:'جذع مشترك علوم'},open:'tc-biof'},
+  {id:'tctec',t:{fr:'TC Technologique',ar:'جذع مشترك تكنولوجي'},open:'tc-tech'},
+  {id:'tclsh',t:{fr:'TC Lettres & Sc. humaines',ar:'جذع مشترك آداب وعلوم إنسانية'}},
+  {id:'tcor',t:{fr:'TC Enseignement originel',ar:'جذع مشترك تعليم أصيل'}},
+  {id:'tcart',t:{fr:'TC Arts appliqués',ar:'جذع مشترك فنون تطبيقية'}}]},
+ {h:{fr:'1ère année Bac',ar:'الأولى بكالوريا'},nodes:[
+  {id:'sm1',t:{fr:'Sciences Mathématiques',ar:'علوم رياضية'},open:'1sm'},
+  {id:'ex1',t:{fr:'Sciences Expérimentales',ar:'علوم تجريبية'},open:'1exp'},
+  {id:'seg1',t:{fr:'Sciences Éco. & Gestion',ar:'علوم اقتصادية وتدبير'},open:'1seg'},
+  {id:'ste1',t:{fr:'Sc. & Techn. Électriques',ar:'علوم وتكنولوجيات كهربائية'},open:'1ste'},
+  {id:'stm1',t:{fr:'Sc. & Techn. Mécaniques',ar:'علوم وتكنولوجيات ميكانيكية'}},
+  {id:'lsh1',t:{fr:'Lettres & Sc. humaines',ar:'آداب وعلوم إنسانية'}},
+  {id:'or1',t:{fr:'Enseignement originel',ar:'تعليم أصيل'}},
+  {id:'art1',t:{fr:'Arts appliqués',ar:'فنون تطبيقية'}}]},
+ {h:{fr:'2ème année Bac',ar:'الثانية بكالوريا'},nodes:[
+  {id:'sma2',t:{fr:'SM A / SM B',ar:'علوم رياضية أ / ب'}},
+  {id:'pc2',t:{fr:'Sciences Physiques (PC)',ar:'علوم فيزيائية'},open:'pc'},
+  {id:'svt2',t:{fr:'SVT',ar:'علوم الحياة والأرض'},open:'svt'},
+  {id:'sgc2',t:{fr:'Gestion Comptable (SGC)',ar:'علوم التدبير المحاسباتي'},open:'sgc'},
+  {id:'sec2',t:{fr:'Sciences Économiques',ar:'علوم اقتصادية'}},
+  {id:'ste2',t:{fr:'STE',ar:'علوم وتكنولوجيات كهربائية'}},
+  {id:'stm2',t:{fr:'STM',ar:'علوم وتكنولوجيات ميكانيكية'}},
+  {id:'let2',t:{fr:'Lettres / Sc. humaines',ar:'آداب / علوم إنسانية'}},
+  {id:'or2',t:{fr:'Originel',ar:'أصيل'}},
+  {id:'art2',t:{fr:'Arts appliqués',ar:'فنون تطبيقية'}}]}
+];
+const G_EDGES=[['g3','tcsc'],['g3','tctec'],['g3','tclsh'],['g3','tcor'],['g3','tcart'],
+ ['tcsc','sm1'],['tcsc','ex1'],['tcsc','seg1'],['tctec','ste1'],['tctec','stm1'],['tclsh','lsh1'],['tclsh','seg1'],['tcor','or1'],['tcart','art1'],
+ ['sm1','sma2'],['ex1','pc2'],['ex1','svt2'],['seg1','sgc2'],['seg1','sec2'],['ste1','ste2'],['stm1','stm2'],['lsh1','let2'],['or1','or2'],['art1','art2']];
+function buildGraph(){
+  const cols=document.getElementById('gcols'); if(!cols) return;
+  cols.innerHTML='';
+  G_COLS.forEach(c=>{
+    const col=document.createElement('div');col.className='gcol';
+    col.innerHTML='<div class="gcolhead">'+c.h[lang]+'</div>';
+    c.nodes.forEach(n=>{
+      const b=document.createElement(n.open?'button':'div');
+      b.className='gnode'+(n.start?' start':'')+(n.open?' here':'');
+      b.id='gn-'+n.id;b.dataset.id=n.id;
+      b.innerHTML=n.t[lang]+(n.sub&&!n.start?'':'');
+      if(n.start) b.innerHTML=n.t[lang]+'<small>'+n.sub[lang]+'</small>';
+      if(n.open) b.addEventListener('click',()=>{openDetail(n.open);document.getElementById('filieres').scrollIntoView({behavior:'smooth'});});
+      ['mouseenter','focus'].forEach(ev=>b.addEventListener(ev,()=>gLight(n.id)));
+      ['mouseleave','blur'].forEach(ev=>b.addEventListener(ev,()=>gLight(null)));
+      b.addEventListener('touchstart',()=>gLight(n.id),{passive:true});
+      if(!n.open) b.tabIndex=0;
+      col.appendChild(b);
+    });
+    cols.appendChild(col);
+  });
+  requestAnimationFrame(drawEdges);
+}
+function drawEdges(){
+  const svg=document.getElementById('gsvg'),wrap=document.getElementById('gwrap');
+  if(!svg||!wrap||getComputedStyle(svg).display==='none') return;
+  const W=wrap.getBoundingClientRect();svg.setAttribute('viewBox','0 0 '+W.width+' '+W.height);
+  const rtl=document.documentElement.dir==='rtl';let h='';
+  G_EDGES.forEach(([a,b],i)=>{
+    const A=document.getElementById('gn-'+a),B=document.getElementById('gn-'+b);if(!A||!B)return;
+    const ra=A.getBoundingClientRect(),rb=B.getBoundingClientRect();
+    const x1=(rtl?ra.left:ra.right)-W.left,y1=ra.top+ra.height/2-W.top,x2=(rtl?rb.right:rb.left)-W.left,y2=rb.top+rb.height/2-W.top;
+    const dx=(x2-x1)/2;
+    h+='<path data-a="'+a+'" data-b="'+b+'" d="M'+x1+' '+y1+' C'+(x1+dx)+' '+y1+' '+(x2-dx)+' '+y2+' '+x2+' '+y2+'"/>';
+  });
+  svg.innerHTML=h;
+}
+function gLight(id){
+  const nodes=document.querySelectorAll('.gnode'),paths=document.querySelectorAll('#gsvg path');
+  if(!id){nodes.forEach(n=>n.classList.remove('hl','dimmed'));paths.forEach(p=>p.classList.remove('on','flow'));return;}
+  const up=new Set([id]),down=new Set([id]);
+  let ch=true;while(ch){ch=false;G_EDGES.forEach(([a,b])=>{if(up.has(b)&&!up.has(a)){up.add(a);ch=true}});}
+  ch=true;while(ch){ch=false;G_EDGES.forEach(([a,b])=>{if(down.has(a)&&!down.has(b)){down.add(b);ch=true}});}
+  const all=new Set([...up,...down]);
+  nodes.forEach(n=>{const on=all.has(n.dataset.id);n.classList.toggle('dimmed',!on);n.classList.toggle('hl',on&&n.dataset.id!==id&&!n.classList.contains('start'));});
+  paths.forEach(p=>{const on=(up.has(p.dataset.a)&&up.has(p.dataset.b))||(down.has(p.dataset.a)&&down.has(p.dataset.b));p.classList.toggle('on',on);p.classList.toggle('flow',on);});
+}
+window.addEventListener('resize',()=>{clearTimeout(window.__gr);window.__gr=setTimeout(drawEdges,120)});
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(drawEdges);
+
+/* ===== RIASEC ===== */
+const RIA=[
+ {l:'R',c:'#C2410C',t:{fr:'Réaliste',ar:'الواقعي'},d:{fr:'Aime le concret : outils, machines, nature, activités physiques.',ar:'يحب العمل الملموس: الأدوات والآلات والطبيعة والنشاط البدني.'},j:{fr:['Technicien','Mécanicien','Agriculture'],ar:['تقني','ميكانيكي','فلاحة']}},
+ {l:'I',c:'#1D4ED8',t:{fr:'Investigateur',ar:'الباحث'},d:{fr:'Curieux et analytique : aime comprendre, chercher, résoudre des problèmes.',ar:'فضولي وتحليلي: يحب الفهم والبحث وحل المشكلات.'},j:{fr:['Médecin','Ingénieur','Chercheur'],ar:['طبيب','مهندس','باحث']}},
+ {l:'A',c:'#9333EA',t:{fr:'Artistique',ar:'الفنّي'},d:{fr:'Créatif et expressif : aime l’originalité, l’art, l’écriture, le design.',ar:'مبدع ومعبّر: يحب الأصالة والفن والكتابة والتصميم.'},j:{fr:['Designer','Architecte','Journaliste'],ar:['مصمم','مهندس معماري','صحفي']}},
+ {l:'S',c:'#15803D',t:{fr:'Social',ar:'الاجتماعي'},d:{fr:'Aime aider, enseigner, écouter et travailler avec les autres.',ar:'يحب المساعدة والتعليم والإصغاء والعمل مع الآخرين.'},j:{fr:['Enseignant','Infirmier','Psychologue'],ar:['أستاذ','ممرض','أخصائي نفسي']}},
+ {l:'E',c:'#B45309',t:{fr:'Entreprenant',ar:'المقاول'},d:{fr:'Leader, persuasif, aime décider, convaincre et lancer des projets.',ar:'قيادي ومقنع: يحب اتخاذ القرار والإقناع وإطلاق المشاريع.'},j:{fr:['Manager','Commercial','Avocat'],ar:['مسيّر','تجاري','محامٍ']}},
+ {l:'C',c:'#0E7490',t:{fr:'Conventionnel',ar:'المنظِّم'},d:{fr:'Méthodique et précis : aime l’organisation, les chiffres, les procédures.',ar:'منهجي ودقيق: يحب التنظيم والأرقام والإجراءات.'},j:{fr:['Comptable','Gestionnaire','Administrateur'],ar:['محاسب','مسير إداري','إداري']}}
+];
+function buildRia(){
+  const g=document.getElementById('riaGrid');if(!g)return;
+  g.innerHTML=RIA.map(r=>'<div class="riacard reveal" style="--c:'+r.c+'"><div class="riaL">'+r.l+'</div><h3>'+r.t[lang]+'</h3><p>'+r.d[lang]+'</p><div class="pillrow">'+r.j[lang].map(x=>'<span class="pill">'+x+'</span>').join('')+'</div></div>').join('');
+  initReveal();
+}
+
+/* ===== Polish: reveal, active nav, back-to-top ===== */
+let __io;
+function initReveal(){
+  const els=document.querySelectorAll('.reveal:not(.in)');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  __io=__io||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');__io.unobserve(e.target);}}),{threshold:.12});
+  els.forEach(e=>__io.observe(e));
+}
+(function(){
+  document.documentElement.classList.add('js');
+  document.querySelectorAll('section .wrap').forEach(w=>{if(!w.closest('.hero'))w.classList.add('reveal');});
+  const t=document.createElement('button');t.className='totop';t.setAttribute('aria-label','Top');t.textContent='↑';
+  t.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));document.body.appendChild(t);
+  window.addEventListener('scroll',()=>t.classList.toggle('show',scrollY>700),{passive:true});
+  const links=[...document.querySelectorAll('.navlinks a')];
+  if('IntersectionObserver' in window){
+    const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section[id]').forEach(x=>so.observe(x));
+  }
+  initReveal();
+  setTimeout(()=>document.querySelectorAll('.reveal').forEach(e=>{const r=e.getBoundingClientRect();if(r.top<innerHeight)e.classList.add('in')}),50);
+})();
+
 function applyLang(){
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -749,7 +1007,7 @@ function applyLang(){
     const key = el.getAttribute('data-i18n');
     if(T[lang][key]) el.textContent = T[lang][key];
   });
-  buildChips(); buildPathway(); buildOrient(); buildBranchSelect(); buildLevelSelect(); document.getElementById('detailPanel').classList.remove('open');
+  buildChips(); buildPathway(); buildOrient(); if(typeof buildGraph==='function')buildGraph(); if(typeof buildRia==='function')buildRia(); buildBranchSelect(); buildLevelSelect(); document.getElementById('detailPanel').classList.remove('open');
   localStorage.setItem('okh_lang', lang);
 }
 function applyTheme(){
@@ -896,48 +1154,6 @@ function calcMoyenne(){
   const level=document.getElementById('levelSelect').value;
   const list=SCHOOL_COEF[level];
   const b=list.find(x=>x.id===document.getElementById('myBranchSelect').value)||list[0];
-  let totalPts=0,totalCoef=0,ok=true,used=0;const subjVals=[];
-  b.subjects.forEach((s,i)=>{
-    const inputs=[0,1,2,3,4].map(j=>document.querySelector(`.myExamNote[data-i="${i}"][data-exam="${j}"]`));
-    const subjectName = `${s.n.fr || ''} ${s.n.ar || ''}`.toLowerCase();
-    const noSecondNote = subjectName.includes('math') || subjectName.includes('رياضيات') || subjectName.includes('éducation physique') || subjectName.includes('التربية البدنية');
-    const values=inputs.map((input,j)=>input && (j!==4 || !noSecondNote) ? input.value : '');
-    if(values.every(v=>v==='')) return;
-    if(values.some(v=>v!=='' && !validRange(v))) { ok=false; return; }
-    if(s.c===null || !Number.isFinite(Number(s.c)) || Number(s.c)<=0) return;
-    const exams=values.slice(0,4).filter(v=>v!=='').map(Number);
-    const examAverage=exams.length ? exams.reduce((a,v)=>a+v,0)/exams.length : null;
-    let note;
-    if(noSecondNote) {
-      if(examAverage===null) return;
-      note=examAverage;
-    } else {
-      const second=values[4]==='' ? null : Number(values[4]);
-      if(examAverage===null && second===null) return;
-      const weight=(examAverage===null ? 0 : 0.75)+(second===null ? 0 : 0.25);
-      note=((examAverage===null ? 0 : examAverage*0.75)+(second===null ? 0 : second*0.25))/weight;
-    }
-    totalPts+=note*Number(s.c);totalCoef+=Number(s.c);used++;
-    subjVals.push({name:s.n[lang],note});
-  });
-  if(!ok||totalCoef===0){
-    document.getElementById('myResultBox').classList.add('hide');
-    if(!ok) alert(lang==='ar'?'أكمل النقاط الخمس لكل مادة بدأت بإدخالها، وأدخل قيماً بين 0 و20.':'Pour chaque matière commencée, remplissez les 4 examens et la Deuxième note avec des notes entre 0 et 20. Les matières laissées entièrement vides sont ignorées.');
-    else alert(lang==='ar'?'أدخل النقاط الخمس لمادة واحدة على الأقل.':'Saisissez les 4 examens et la Deuxième note d’au moins une matière.');
-    return;
-  }
-  const moyenne=totalPts/totalCoef;document.getElementById('myResultBox').classList.remove('hide');
-  document.getElementById('myBigResult').textContent=moyenne.toFixed(2)+' /20';document.getElementById('myBarFill').style.width=Math.min(100,moyenne/20*100)+'%';
-  const barsEl=document.getElementById('mySubjBars');barsEl.innerHTML='';subjVals.forEach(s=>{const row=document.createElement('div');row.className='sbrow';row.innerHTML=`<span>${s.name}</span><div class="sbtrack"><div class="sbfill" style="width:${s.note/20*100}%"></div></div><span>${s.note.toFixed(2)}</span>`;barsEl.appendChild(row);});
-}
-document.getElementById('myCalcBtn').addEventListener('click', calcMoyenne);
-
-
-
-function calcMoyenne(){
-  const level=document.getElementById('levelSelect').value;
-  const list=SCHOOL_COEF[level];
-  const b=list.find(x=>x.id===document.getElementById('myBranchSelect').value)||list[0];
   let totalPts=0,totalCoef=0,ok=true;const subjVals=[];
   b.subjects.forEach((s,i)=>{
     const inputs=[0,1,2,3,4].map(j=>document.querySelector(`.myExamNote[data-i="${i}"][data-exam="${j}"]`));
@@ -948,8 +1164,14 @@ function calcMoyenne(){
     if(entries.some(v=>!validRange(v))){ok=false;return;}
     if(s.c===null || !Number.isFinite(Number(s.c)) || Number(s.c)<=0) return;
     // Average only the exam notes entered, then apply 75%; add the Deuxième note at 25% when provided.
-    const examAverage=examValues.length ? examValues.reduce((sum,v)=>sum+Number(v),0)/examValues.length : 0;
-    const note=examAverage*0.75+(secondValue!==''?Number(secondValue)*0.25:0);
+    const examAverage=examValues.length ? examValues.reduce((sum,v)=>sum+Number(v),0)/examValues.length : null;
+    let note;
+    if(!inputs[4]){ if(examAverage===null) return; note=examAverage; } // Maths / EPS: no Deuxième note, exams count 100%
+    else {
+      const second=secondValue!=='' ? Number(secondValue) : null;
+      const w=(examAverage===null?0:0.75)+(second===null?0:0.25);
+      note=((examAverage===null?0:examAverage*0.75)+(second===null?0:second*0.25))/w;
+    }
     totalPts+=note*Number(s.c);totalCoef+=Number(s.c);subjVals.push({name:s.n[lang],note});
   });
   const assiduiteInput=document.getElementById('assiduiteNote');

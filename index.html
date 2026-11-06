@@ -198,7 +198,7 @@ select:focus,input:focus{outline:none;border-color:var(--teal2);box-shadow:var(-
 html[dir="rtl"] .gcolhead{letter-spacing:0;font-size:13.5px}
 .gnode{position:relative;padding:11px 14px;border-radius:12px;font-size:13.5px;font-weight:600;line-height:1.3;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#eaf1ee;text-align:start;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;font-family:inherit;width:100%;display:block}
 .gnode small{display:block;font-weight:500;opacity:.65;font-size:11.5px;margin-top:2px}
-.gnode.here{background:linear-gradient(135deg,rgba(30,127,122,.55),rgba(30,127,122,.25));border-color:rgba(120,220,210,.6);cursor:pointer;box-shadow:0 0 0 1px rgba(120,220,210,.15),0 8px 26px rgba(30,127,122,.35)}
+.gnode.here{background:linear-gradient(135deg,rgba(30,127,122,.55),rgba(30,127,122,.25));border-color:rgba(120,220,210,.6);cursor:default;box-shadow:0 0 0 1px rgba(120,220,210,.15),0 8px 26px rgba(30,127,122,.35)}
 .gnode.here::after{content:'★';position:absolute;top:-8px;inset-inline-end:-6px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#1a1405;font-size:11px;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 .gnode.here:hover{transform:translateY(-2px) scale(1.02);border-color:#9ff0e6}
 .gnode.start{background:linear-gradient(135deg,var(--gold),#d6b46e);color:#1a1405;border:none;text-align:center;font-size:15px;padding:18px 14px;box-shadow:0 10px 30px rgba(184,147,74,.35)}
@@ -329,7 +329,7 @@ html[dir="rtl"] .gcolhead{letter-spacing:0;font-size:13.5px}
   <div class="wrap">
     <div class="kicker" data-i18n="gKick">Système éducatif</div>
     <h2 class="sectitle" data-i18n="gTitle">De la 3AC au 2BAC : les parcours au Maroc</h2>
-    <p class="secdesc" data-i18n="gDesc">Survolez ou touchez une filière pour illuminer tous les chemins possibles qui y mènent et qui en partent. Les filières ★ sont celles du lycée : cliquez pour ouvrir leur fiche.</p>
+    <p class="secdesc" data-i18n="gDesc">Survolez ou touchez une filière pour illuminer tous les chemins possibles qui y mènent et qui en partent. Les filières ★ sont celles du lycée.</p>
     <div class="gwrap" id="gwrap">
       <svg class="gsvg" id="gsvg" aria-hidden="true"></svg>
       <div class="gcols" id="gcols"></div>
@@ -528,7 +528,7 @@ calcBtn:"Calculer ma moyenne",resultLabel:"Votre moyenne estimée",
 legCC:"Contrôle continu 25%",legReg:"Régional 25%",legNat:"National 50%",
 campusTitle:"Notre campus",campusDesc:"Un aperçu du plan de l'établissement — bâtiments, cour et terrain de sport.",campusCap:"Plan illustratif du campus — à titre indicatif.",
 nav7:"Activités",navGraph:"Parcours",navRia:"Test RIASEC",
-gKick:"Système éducatif",gTitle:"De la 3AC au 2BAC : les parcours au Maroc",gDesc:"Survolez ou touchez une filière pour illuminer les chemins qui y mènent et qui en partent. Les filières ★ sont celles du lycée : cliquez pour ouvrir leur fiche.",gLeg1:"★ Disponible au lycée Omar Al Khayyam",gLeg2:"Parcours national (non proposé ici)",gLeg3:"Chemin sélectionné",gSrc:"Schéma indicatif, d'après le guide d'orientation Tawjihnet 2026 (structure des filières et passerelles). Vérifiez toujours auprès de l'administration et du portail Massar.",
+gKick:"Système éducatif",gTitle:"De la 3AC au 2BAC : les parcours au Maroc",gDesc:"Survolez ou touchez une filière pour illuminer les chemins qui y mènent et qui en partent. Les filières ★ sont celles du lycée.",gLeg1:"★ Disponible au lycée Omar Al Khayyam",gLeg2:"Parcours national (non proposé ici)",gLeg3:"Chemin sélectionné",gSrc:"Schéma indicatif, d'après le guide d'orientation Tawjihnet 2026 (structure des filières et passerelles). Vérifiez toujours auprès de l'administration et du portail Massar.",
 rKick:"Se connaître pour mieux s'orienter",rTitle:"Test d'orientation RIASEC",rDesc:"Le modèle RIASEC (ou « Holland ») classe les intérêts professionnels en six grands types. Recommandé par notre enseignant, ce test gratuit pour élèves aide à repérer les domaines qui te ressemblent avant de choisir une filière.",rBoxT:"Passer le test (environ 10 min)",rBoxP:"Réponds spontanément, il n'y a ni bonne ni mauvaise réponse. Tu obtiens ton profil à trois lettres.",rBtn:"Commencer le test →",rNote:"Site externe (riasectest.com), non affilié au lycée. Le résultat est une piste de réflexion, pas une décision : parle-en avec ton conseiller d'orientation.",
 actTitle:"Nos activités",actDesc:"Quelques moments d'ateliers, de séances d'orientation et de projets technologiques organisés au lycée.",
 act1cap:"Séance d'orientation et de sensibilisation avec les élèves.",
@@ -571,7 +571,7 @@ calcBtn:"احسب معدلي",resultLabel:"معدلك التقديري",
 legCC:"المراقبة المستمرة 25%",legReg:"الجهوي 25%",legNat:"الوطني 50%",
 campusTitle:"حرمنا الدراسي",campusDesc:"لمحة عن مخطط المؤسسة — المباني والساحة وملعب الرياضة.",campusCap:"مخطط توضيحي للحرم الدراسي — لأغراض إرشادية.",
 nav7:"الأنشطة",navGraph:"المسارات",navRia:"اختبار RIASEC",
-gKick:"المنظومة التربوية",gTitle:"من الثالثة إعدادي إلى الثانية بكالوريا: المسارات بالمغرب",gDesc:"مرّر المؤشر أو المس شعبة لإضاءة المسارات المؤدية إليها والمنبثقة عنها. الشعب ★ هي المتوفرة بالثانوية: اضغط لفتح بطاقتها.",gLeg1:"★ متوفرة بثانوية عمر الخيام",gLeg2:"مسار وطني (غير متوفر هنا)",gLeg3:"المسار المحدد",gSrc:"مخطط استرشادي مستوحى من دليل التوجيه (Tawjihnet 2026) حول هيكلة الشعب والمسالك والجسور. تحقق دائماً لدى الإدارة وبوابة مسار.",
+gKick:"المنظومة التربوية",gTitle:"من الثالثة إعدادي إلى الثانية بكالوريا: المسارات بالمغرب",gDesc:"مرّر المؤشر أو المس شعبة لإضاءة المسارات المؤدية إليها والمنبثقة عنها. الشعب ★ هي المتوفرة بالثانوية.",gLeg1:"★ متوفرة بثانوية عمر الخيام",gLeg2:"مسار وطني (غير متوفر هنا)",gLeg3:"المسار المحدد",gSrc:"مخطط استرشادي مستوحى من دليل التوجيه (Tawjihnet 2026) حول هيكلة الشعب والمسالك والجسور. تحقق دائماً لدى الإدارة وبوابة مسار.",
 rKick:"اعرف نفسك لتختار بشكل أفضل",rTitle:"اختبار التوجيه RIASEC",rDesc:"يصنّف نموذج RIASEC (نموذج هولاند) الميول المهنية إلى ستة أنماط كبرى. اقترح علينا أستاذنا هذا الاختبار المجاني الموجّه للتلاميذ لمساعدتك على اكتشاف المجالات التي تناسبك قبل اختيار الشعبة.",rBoxT:"اجتز الاختبار (حوالي 10 دقائق)",rBoxP:"أجب بتلقائية، فلا توجد إجابة صحيحة أو خاطئة. ستحصل على ملفك المكوّن من ثلاثة أحرف.",rBtn:"ابدأ الاختبار ←",rNote:"موقع خارجي (riasectest.com) غير تابع للثانوية. النتيجة مجرد توجيه للتفكير وليست قراراً: ناقشها مع مستشار التوجيه.",
 actTitle:"أنشطتنا",actDesc:"لمحات من الورشات وجلسات التوجيه والمشاريع التكنولوجية التي نُظمت داخل الثانوية.",
 act1cap:"لقاء توجيهي وتحسيسي مع التلاميذ.",
@@ -919,16 +919,15 @@ function buildGraph(){
     const col=document.createElement('div');col.className='gcol';
     col.innerHTML='<div class="gcolhead">'+c.h[lang]+'</div>';
     c.nodes.forEach(n=>{
-      const b=document.createElement(n.open?'button':'div');
+      const b=document.createElement('div');
       b.className='gnode'+(n.start?' start':'')+(n.open?' here':'');
       b.id='gn-'+n.id;b.dataset.id=n.id;
       b.innerHTML=n.t[lang]+(n.sub&&!n.start?'':'');
       if(n.start) b.innerHTML=n.t[lang]+'<small>'+n.sub[lang]+'</small>';
-      if(n.open) b.addEventListener('click',()=>{openDetail(n.open);document.getElementById('filieres').scrollIntoView({behavior:'smooth'});});
       ['mouseenter','focus'].forEach(ev=>b.addEventListener(ev,()=>gLight(n.id)));
       ['mouseleave','blur'].forEach(ev=>b.addEventListener(ev,()=>gLight(null)));
       b.addEventListener('touchstart',()=>gLight(n.id),{passive:true});
-      if(!n.open) b.tabIndex=0;
+      b.tabIndex=0;
       col.appendChild(b);
     });
     cols.appendChild(col);

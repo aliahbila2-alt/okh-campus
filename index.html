@@ -150,6 +150,26 @@ footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:20px}
 .actcard img{display:block;width:100%;height:190px;object-fit:cover;transform:scale(1);transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s;will-change:transform;cursor:zoom-in;transform-origin:center}
 @media (hover:hover) and (pointer:fine){.actcard:hover img{transform:scale(1.15);filter:saturate(1.08)}}
 .actcard.is-zoomed img{transform:scale(1.15);filter:saturate(1.08)}
+
+/* Schools after bac */
+.schoolsbox{margin-top:34px;border-top:1px dashed var(--line);padding-top:26px}
+.schoolsbox h3{font-size:21px;margin-bottom:6px}
+.schoolsbox .sub{margin:0 0 14px;font-size:14px}
+.sch-yours{display:inline-flex;gap:8px;align-items:center;background:color-mix(in srgb,var(--teal2) 14%,transparent);color:var(--teal2);font-weight:700;border-radius:999px;padding:6px 14px;font-size:13.5px;margin-bottom:12px}
+.schtbl{margin-top:8px}
+.schtbl td,.schtbl th{vertical-align:top}
+.schtbl .sname{font-weight:700}
+.schtbl .sname small{display:block;font-weight:500;color:var(--muted);font-size:12.5px;margin-top:2px}
+.thr{font-weight:700;white-space:nowrap}
+.st{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.st.ok{background:rgba(34,150,90,.15);color:#1d8a52}
+.st.no{background:rgba(180,67,43,.13);color:#B4432B}
+.st.na{background:var(--line);color:var(--muted)}
+.st.ne{background:color-mix(in srgb,var(--gold) 20%,transparent);color:#8a6a2a}
+:root[data-theme="dark"] .st.ok{color:#5fd49a}:root[data-theme="dark"] .st.no{color:#ff9a82}:root[data-theme="dark"] .st.ne{color:#e2c07a}
+.schtbl tr.dimrow td{opacity:.55}
+.schtbl tr.okrow td:first-child{box-shadow:inset 3px 0 0 #1d8a52}
+html[dir="rtl"] .schtbl tr.okrow td:first-child{box-shadow:inset -3px 0 0 #1d8a52}
 /* ===== PRO POLISH LAYER ===== */
 :root{--shadow-sm:0 1px 2px rgba(15,40,38,.06),0 2px 8px rgba(15,40,38,.05);--shadow-md:0 2px 4px rgba(15,40,38,.05),0 12px 32px rgba(15,40,38,.10);--shadow-lg:0 4px 8px rgba(15,40,38,.06),0 24px 56px rgba(15,40,38,.16);--ring:0 0 0 3px color-mix(in srgb,var(--teal2) 35%,transparent)}
 :root[data-theme="dark"]{--shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 12px 32px rgba(0,0,0,.45);--shadow-lg:0 24px 56px rgba(0,0,0,.55)}
@@ -408,6 +428,7 @@ html[dir="rtl"] .gcolhead{letter-spacing:0;font-size:13.5px}
         </div>
       </div>
       <div class="subjbars" id="subjBars"></div>
+      <div id="schoolsBox" class="schoolsbox"></div>
     </div>
   </div>
 </section>
@@ -1097,6 +1118,7 @@ function buildBranchSelect(){
   renderTable();
 }
 function renderTable(){
+  lastOverall=null; if(typeof renderSchools==='function') renderSchools();
   const b = BRANCHES.b2.find(x=>x.id===document.getElementById('branchSelect').value) || BRANCHES.b2[0];
   const body = document.getElementById('subjBody'); body.innerHTML='';
   b.subjects.forEach((s,i)=>{
@@ -1192,6 +1214,53 @@ function calcMoyenne(){
 document.getElementById('myCalcBtn').addEventListener('click', calcMoyenne);
 
 function validRange(v){ return v!=='' && !isNaN(v) && v>=0 && v<=20; }
+
+/* ===== Schools after Bac ===== */
+const SCHOOLS=[
+ {n:{fr:"ENSA – Écoles Nationales des Sciences Appliquées",ar:"المدارس الوطنية للعلوم التطبيقية (ENSA)"},pc:14,svt:15,sgc:false,go:{fr:"Ingénierie",ar:"الهندسة"}},
+ {n:{fr:"ENSAM – Arts et Métiers",ar:"المدرسة الوطنية العليا للفنون والمهن (ENSAM)"},pc:14.5,svt:14.5,sgc:false,go:{fr:"Ingénierie / génie industriel",ar:"الهندسة / الهندسة الصناعية"}},
+ {n:{fr:"ENCG – Commerce et Gestion",ar:"المدارس الوطنية للتجارة والتسيير (ENCG)"},pc:14,svt:14,sgc:12,star:1,go:{fr:"Management, finance, commerce",ar:"التدبير والمالية والتجارة"}},
+ {n:{fr:"Médecine / Pharmacie / Dentaire",ar:"الطب / الصيدلة / طب الأسنان"},pc:12,svt:12,sgc:false,go:{fr:"Médecine, pharmacie, médecine dentaire",ar:"الطب والصيدلة وطب الأسنان"}},
+ {n:{fr:"CPGE – Classes Préparatoires",ar:"الأقسام التحضيرية (CPGE)"},pc:'ab',svt:'ab',sgc:'ab',go:{fr:"Préparation aux grandes écoles d'ingénieurs / commerce",ar:"التحضير لمدارس المهندسين والتجارة الكبرى"}},
+ {n:{fr:"FST – Facultés des Sciences et Techniques",ar:"كليات العلوم والتقنيات (FST)"},pc:true,svt:true,sgc:'part',go:{fr:"Sciences, technologie, ingénierie",ar:"العلوم والتكنولوجيا والهندسة"}},
+ {n:{fr:"EST – Écoles Supérieures de Technologie",ar:"المدارس العليا للتكنولوجيا (EST)"},pc:true,svt:true,sgc:true,go:{fr:"Technologie, management, type DUT",ar:"التكنولوجيا والتدبير (دبلوم جامعي تقني)"}},
+ {n:{fr:"IAV Hassan II",ar:"معهد الحسن الثاني للزراعة والبيطرة (IAV)"},pc:'conc',svt:'conc',sgc:false,go:{fr:"Agronomie, vétérinaire, ingénierie",ar:"الفلاحة والبيطرة والهندسة"}},
+ {n:{fr:"ENA – Écoles Nationales d'Architecture",ar:"المدارس الوطنية للهندسة المعمارية (ENA)"},pc:true,svt:true,sgc:false,go:{fr:"Architecture",ar:"الهندسة المعمارية"}},
+ {n:{fr:"ISPITS",ar:"المعاهد العليا للمهن التمريضية وتقنيات الصحة (ISPITS)"},pc:true,svt:true,sgc:false,go:{fr:"Soins infirmiers / métiers de la santé",ar:"التمريض والمهن الصحية"}}
+];
+let lastOverall=null;
+function renderSchools(){
+  const box=document.getElementById('schoolsBox');if(!box)return;
+  const id=document.getElementById('branchSelect').value;
+  if(!['pc','svt','sgc'].includes(id)){box.innerHTML='';return;}
+  const ar=lang==='ar';
+  const b=BRANCHES.b2.find(x=>x.id===id);
+  const g=lastOverall;
+  const rows=SCHOOLS.map(sc=>{
+    const v=sc[id];let thr,st,cls='';
+    if(v===false){thr='—';st='<span class="st na">'+(ar?'غير متاح مباشرة':'Non accessible directement')+'</span>';cls='dimrow';}
+    else if(typeof v==='number'){
+      thr=v.toFixed(v%1?1:0)+'/20'+(sc.star&&v>=14?'*':'');
+      if(g===null)st='<span class="st na">'+(ar?'احسب معدلك':'Calcule ta moyenne')+'</span>';
+      else if(g>=v){st='<span class="st ok">✓ '+(ar?'في المتناول':'Accessible')+'</span>';cls='okrow';}
+      else st='<span class="st no">'+(ar?'ينقصك ':'Il manque ')+(v-g).toFixed(2)+(ar?' نقطة':' pt')+'</span>';
+    }else if(v==='ab'){
+      thr=ar?'ميزة «مستحسن» (≥ 12)':'Mention Assez Bien (≥ 12)';
+      if(g===null)st='<span class="st na">'+(ar?'احسب معدلك':'Calcule ta moyenne')+'</span>';
+      else if(g>=12){st='<span class="st ok">✓ '+(ar?'في المتناول':'Accessible')+'</span>';cls='okrow';}
+      else st='<span class="st no">'+(ar?'ينقصك ':'Il manque ')+(12-g).toFixed(2)+(ar?' نقطة':' pt')+'</span>';
+    }else if(v==='conc'){thr=ar?'حسب المباراة':'Selon concours';st='<span class="st ne">'+(ar?'مباراة':'Concours')+'</span>';}
+    else if(v==='part'){thr=ar?'حسب البرنامج':'Selon le programme';st='<span class="st ne">'+(ar?'محدود / حسب المسلك':'Limité / selon filière')+'</span>';}
+    else{thr=ar?'ولوج مفتوح':'Accès ouvert';st='<span class="st ok">✓ '+(ar?'متاح':'Possible')+'</span>';}
+    return '<tr class="'+cls+'"><td class="sname">'+sc.n[lang]+'<small>'+sc.go[lang]+'</small></td><td class="thr">'+thr+'</td><td>'+st+'</td></tr>';
+  }).join('');
+  const yours=g===null?'':'<div class="sch-yours">'+(ar?'معدلك التقديري: ':'Ta moyenne estimée : ')+g.toFixed(2)+' /20</div>';
+  box.innerHTML='<h3>'+(ar?'إلى أين يمكنك الذهاب بعد الباكلوريا؟':'Où aller après le Bac ?')+' — '+b.name[lang]+'</h3>'
+   +'<p class="sub">'+(ar?'المدارس الرئيسية وعتبات 2026 حسب شعبتك. احسب معدلك أعلاه لترى ما هو في المتناول.':'Principales écoles et seuils 2026 pour ta filière. Calcule ta moyenne ci-dessus pour voir ce qui est à ta portée.')+'</p>'
+   +yours+'<div class="tblwrap"><table class="schtbl"><thead><tr><th>'+(ar?'المؤسسة / المسار':'École / réseau')+'</th><th>'+(ar?'العتبة 2026':'Seuil 2026')+'</th><th>'+(ar?'حالتك':'Ton statut')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+   +'<div class="notice">'+(ar?'* عتبة ENCG للمسلكين PC/SVT لعام 2026 أقل تأكيداً من العتبات الأخرى، فاعتبر 14/20 مرجعاً حديثاً وليس عتبة مضمونة لسنة 2027. العتبات تتغير كل سنة، والقبول يخضع للمباريات والأماكن المتاحة وانتقاء الملفات؛ معدلك هنا تقدير فقط. تحقق دائماً من المصادر الرسمية لكل مؤسسة. ولوج CPGE عادةً بميزة «مستحسن» على الأقل، مع إعفاء بعض المسالك التقنية/العلمية. مدارس مثل EMI وEHTP وENSIAS وINPT تُلج عبر مباراة CNC بعد الأقسام التحضيرية.':'* Le seuil ENCG 2026 pour PC/SVT est moins solidement établi que les autres : considère 14/20 comme référence récente, pas comme un seuil garanti pour 2027. Les seuils changent chaque année et l’admission dépend des concours, des places et de la sélection sur dossier ; ta moyenne ici n’est qu’une estimation. Vérifie toujours les sources officielles de chaque établissement. Les CPGE publiques demandent en général la mention Assez Bien (certaines filières techniques/scientifiques en sont dispensées). Des écoles comme EMI, EHTP, ENSIAS ou INPT s’intègrent via le concours CNC après les CPGE, pas directement après le Bac.')+'</div>';
+}
+
 function calc(){
   const cc = document.getElementById('ccInput').value;
   const reg = document.getElementById('regInput').value;
@@ -1215,6 +1284,7 @@ function calc(){
   if(!ok) return;
   const national = totalCoef>0 ? totalPts/totalCoef : 0;
   const overall = cc*0.25*1 ? (parseFloat(cc)*0.25 + parseFloat(reg)*0.25 + national*0.5) : 0;
+  lastOverall=overall;renderSchools();
   document.getElementById('resultBox').classList.remove('hide');
   document.getElementById('bigResult').textContent = overall.toFixed(2) + ' /20';
   document.getElementById('barFill').style.width = Math.min(100,(overall/20*100)) + '%';
